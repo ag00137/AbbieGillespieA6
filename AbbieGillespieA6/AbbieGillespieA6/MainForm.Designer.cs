@@ -46,15 +46,18 @@
             // 
             // ExportDataAsCSVBtn
             // 
+            ExportDataAsCSVBtn.Enabled = false;
             ExportDataAsCSVBtn.Location = new Point(157, 12);
             ExportDataAsCSVBtn.Name = "ExportDataAsCSVBtn";
             ExportDataAsCSVBtn.Size = new Size(187, 34);
             ExportDataAsCSVBtn.TabIndex = 1;
             ExportDataAsCSVBtn.Text = "Export Data as CSV";
             ExportDataAsCSVBtn.UseVisualStyleBackColor = true;
+            ExportDataAsCSVBtn.Click += ExportDataAsCSVBtn_Click;
             // 
             // ExportDataAsJSONBtn
             // 
+            ExportDataAsJSONBtn.Enabled = false;
             ExportDataAsJSONBtn.Location = new Point(157, 52);
             ExportDataAsJSONBtn.Name = "ExportDataAsJSONBtn";
             ExportDataAsJSONBtn.Size = new Size(187, 34);
