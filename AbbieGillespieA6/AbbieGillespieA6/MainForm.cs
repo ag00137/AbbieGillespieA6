@@ -34,18 +34,32 @@ namespace AbbieGillespieA6
         }
 
         private void ExportDataAsCSVBtn_Click(object sender, EventArgs e)
-        {          
+        {
+            if (dataObjects != null)
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "CSV file (*.csv)|*.csv";
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    StringBuilder csv = new StringBuilder();
+                    foreach (Book book in dataObjects)
+                    {
+                        csv.AppendLine($"{book.Title}, {book.Author}, {book.PageLength}, {book.Genre}, {book.YearPublished}, {book.MSRP},");
+                    }
+
+                    File.WriteAllText(saveFileDialog.FileName, csv.ToString());
+                }
+            }
+        }
+
+        private void ExportDataAsJSONBtn_Click(object sender, EventArgs e)
+        {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "CSV file (*.csv)|*csv";
+            saveFileDialog.Filter = "JSON file (*.json)|*.json";
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                StringBuilder csv = new StringBuilder();
-                foreach (var book in dataObjects)
-                {
-                    csv.AppendLine($"{book.Title}, {book.Author}, {book.PageLength}, {book.Genre}, {book.YearPublished}, {book.MSRP},");
-                }
-
-                File.WriteAllText(saveFileDialog.FileName, csv.ToString());
+                string jsonData = JsonSerializer.Serialize(dataObjects);
+                File.WriteAllText(saveFileDialog.FileName, jsonData);
             }
         }
     }
